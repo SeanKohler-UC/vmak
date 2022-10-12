@@ -9,6 +9,9 @@
 import TableButtonsComponent from "./TableButtonsComponent";
 
 export default {
+    props: {
+        table_rows: Array
+    },
     data() {
         return {
             columns: [
@@ -36,6 +39,26 @@ export default {
                     align: 'left'
                 },
                 {
+                    label: 'Owner',
+                    field: 'owner',
+                    headerAlign: 'left',
+                    align: 'left',
+                    interpolate: true,
+                    representedAs: function (r) {
+                        return r.owner.first_name + ' ' + r.owner.last_name;
+                    }
+                },
+                {
+                    label: 'Address',
+                    field: 'address',
+                    headerAlign: 'left',
+                    align: 'left',
+                    interpolate: true,
+                    representedAs: function (r) {
+                        return r.address.address + '<br>' + r.address.city + '<br>' + r.address.country + '<br>' + r.address.postal_code;
+                    }
+                },
+                {
                     label: 'Actions',
                     headerAlign: 'right',
                     align: 'right',
@@ -49,15 +72,16 @@ export default {
             loading: true
         }
     },
-    methods: {
-        showCars: function () {
-            axios.get('/car').then(function (res) {
-                this.rows = res.data.map(o => ({...o, 'type': 'car'}));
-            }.bind(this));
+    watch: {
+        table_rows: function (table_rows) {
+            this.rows = table_rows;
+            // Remove columns used on sub-pages where we do not load this info
+            if (table_rows.length && typeof (table_rows[0].owner) == 'undefined' &&
+                typeof (table_rows[0].address) == 'undefined') {
+                // @todo we shouldn't hard code these values
+                this.columns.splice(4, 2);
+            }
         }
-    },
-    created: function () {
-        this.showCars()
     }
 }
 </script>

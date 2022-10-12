@@ -33,7 +33,9 @@ Route::put('address/{address}', 'AddressController@update');
 Route::delete('address/{address}', 'AddressController@delete');
 
 Route::get('car', 'CarController@index');
+Route::get('car/with/{with}', 'CarController@indexWith');
 Route::get('car/{car}', 'CarController@show');
+Route::get('car/{car}/with/{with}', 'CarController@showWith');
 Route::post('car', 'CarController@store');
 Route::put('car/{car}', 'CarController@update');
 Route::delete('car/{car}', 'CarController@delete');

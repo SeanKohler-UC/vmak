@@ -20,6 +20,17 @@ class CarController extends Controller
     }
 
     /**
+     * Return a list of all cars with defined relationships loaded
+     *
+     * @param string $with
+     * @return array
+     */
+    public function indexWith(string $with): array
+    {
+        return Car::with(explode('-', $with))->get()->toArray();
+    }
+
+    /**
      * Return a single car.
      *
      * @param Car $car
@@ -27,6 +38,19 @@ class CarController extends Controller
      */
     public function show(Car $car): Car
     {
+        return $car;
+    }
+
+    /**
+     * Return a single car with defined relationships loaded
+     *
+     * @param Car $car
+     * @param string $with
+     * @return Car
+     */
+    public function showWith(Car $car, string $with): Car
+    {
+        $car->load(explode('-', $with));
         return $car;
     }
 
