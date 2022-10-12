@@ -76,7 +76,7 @@ class AddressController extends Controller
      */
     public function update(Request $request, Address $address): JsonResponse
     {
-        $address->update($request->all());
+        $address->update($request->except('id', 'created_at'));
 
         return response()->json($address, 200);
     }

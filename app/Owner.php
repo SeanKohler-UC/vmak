@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Owner extends Model
 {
+    protected $guarded = ['id'];
+
     /**
      * Get addresses associated with an owner.
      *

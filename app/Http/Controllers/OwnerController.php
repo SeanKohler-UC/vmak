@@ -76,7 +76,7 @@ class OwnerController extends Controller
      */
     public function update(Request $request, Owner $owner): JsonResponse
     {
-        $owner->update($request->all());
+        $owner->update($request->except(['id', 'created_at']));
 
         return response()->json($owner, 200);
     }

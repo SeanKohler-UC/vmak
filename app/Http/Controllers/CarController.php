@@ -76,7 +76,7 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car): JsonResponse
     {
-        $car->update($request->all());
+        $car->update($request->except('id', 'created_at'));
 
         return response()->json($car, 200);
     }
