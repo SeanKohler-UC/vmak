@@ -9,6 +9,9 @@
 import TableButtonsComponent from "./TableButtonsComponent";
 
 export default {
+    props: {
+        table_rows: Array
+    },
     data() {
         return {
             columns: [
@@ -30,6 +33,18 @@ export default {
                     align: 'left'
                 },
                 {
+                    label: 'Addresses',
+                    field: 'addresses.length',
+                    headerAlign: 'right',
+                    align: 'right'
+                },
+                {
+                    label: 'Cars',
+                    field: 'cars.length',
+                    headerAlign: 'right',
+                    align: 'right'
+                },
+                {
                     label: 'Actions',
                     headerAlign: 'right',
                     align: 'right',
@@ -43,15 +58,16 @@ export default {
             loading: true
         }
     },
-    methods: {
-        showOwners: function () {
-            axios.get('/owner').then(function (res) {
-                this.rows = res.data.map(o => ({...o, 'type': 'owner'}));
-            }.bind(this));
+    watch: {
+        table_rows: function (table_rows) {
+            this.rows = table_rows;
+            // Remove columns used on sub-pages where we do not load this info
+            if (typeof (table_rows[0].addresses) == 'undefined' &&
+                typeof (table_rows[0].cars) == 'undefined') {
+                // @todo we shouldn't hard code these values
+                this.columns.splice(3, 2);
+            }
         }
-    },
-    created: function () {
-        this.showOwners()
     }
 }
 </script>

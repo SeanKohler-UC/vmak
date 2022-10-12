@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('owner', 'OwnerController@index');
+Route::get('owner/with/{with}', 'OwnerController@indexWith');
 Route::get('owner/{owner}', 'OwnerController@show');
+Route::get('owner/{owner}/with/{with}', 'OwnerController@showWith');
 Route::post('owner', 'OwnerController@store');
 Route::put('owner/{owner}', 'OwnerController@update');
 Route::delete('owner/{owner}', 'OwnerController@delete');

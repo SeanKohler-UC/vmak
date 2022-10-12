@@ -20,6 +20,17 @@ class OwnerController extends Controller
     }
 
     /**
+     * Return a list of all owners with defined relationships loaded
+     *
+     * @param string $with
+     * @return array
+     */
+    public function indexWith(string $with): array
+    {
+        return Owner::with(explode('-', $with))->get()->toArray();
+    }
+
+    /**
      * Return a single owner.
      *
      * @param Owner $owner
@@ -27,6 +38,19 @@ class OwnerController extends Controller
      */
     public function show(Owner $owner): Owner
     {
+        return $owner;
+    }
+
+    /**
+     * Return a single owner with defined relationships loaded
+     *
+     * @param Owner $owner
+     * @param $with
+     * @return Owner
+     */
+    public function showWith(Owner $owner, $with): Owner
+    {
+        $owner->load(explode('-', $with));
         return $owner;
     }
 
