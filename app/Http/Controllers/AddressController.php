@@ -20,6 +20,17 @@ class AddressController extends Controller
     }
 
     /**
+     * Return a list of all addresses with defined relationships loaded
+     *
+     * @param string $with
+     * @return array
+     */
+    public function indexWith(string $with): array
+    {
+        return Address::with(explode('-', $with))->get()->toArray();
+    }
+
+    /**
      * Return a single address.
      *
      * @param Address $address
@@ -27,6 +38,19 @@ class AddressController extends Controller
      */
     public function show(Address $address): Address
     {
+        return $address;
+    }
+
+    /**
+     * Return a single address with defined relationships loaded
+     *
+     * @param Address $address
+     * @param string $with
+     * @return Address
+     */
+    public function showWith(Address $address, string $with): Address
+    {
+        $address->load(explode('-', $with));
         return $address;
     }
 

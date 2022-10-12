@@ -25,7 +25,9 @@ Route::put('owner/{owner}', 'OwnerController@update');
 Route::delete('owner/{owner}', 'OwnerController@delete');
 
 Route::get('address', 'AddressController@index');
+Route::get('address/with/{with}', 'AddressController@indexWith');
 Route::get('address/{address}', 'AddressController@show');
+Route::get('address/{address}/with/{with}', 'AddressController@showWith');
 Route::post('address', 'AddressController@store');
 Route::put('address/{address}', 'AddressController@update');
 Route::delete('address/{address}', 'AddressController@delete');
