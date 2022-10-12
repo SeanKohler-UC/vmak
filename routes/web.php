@@ -40,6 +40,9 @@ Route::post('car', 'CarController@store');
 Route::put('car/{car}', 'CarController@update');
 Route::delete('car/{car}', 'CarController@delete');
 
+/** @uses \App\Http\Controllers\CountController::counts */
+Route::get('counts/{tables}', "CountController@counts");
+
 Route::get('{any}', function () {
     return view('layouts.app');
 })->where('any', '.*');

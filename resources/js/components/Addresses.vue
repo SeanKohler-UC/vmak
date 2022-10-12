@@ -3,8 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Addresses</div>
-
+                    <div class="card-header">
+                        <b>Addresses</b><br/>
+                        <address-averages-component></address-averages-component>
+                    </div>
                     <div class="card-body">
                         <address-table-component :table_rows.sync="table_rows"></address-table-component>
                     </div>

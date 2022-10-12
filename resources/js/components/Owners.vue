@@ -3,7 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Owners</div>
+                    <div class="card-header">
+                        <b>Owners</b><br/>
+                        <owner-averages-component></owner-averages-component>
+                    </div>
 
                     <div class="card-body">
                         <owner-table-component :table_rows.sync="table_rows"></owner-table-component>
